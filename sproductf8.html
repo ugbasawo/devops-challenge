@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet</title> 
+    <script src="https://kit.fontawesome.com/9a6ad59c4f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+<section id="header">
+    <a href="#"><img onclick="window.location.href='index.html';" src="img/logo.png" class="logo" alt=""></a>
+    <div>
+        <ul id="navbar">
+            <li><a href="index.html" >Home</a></li>
+            <li><a class="active" href="shop.html">Shop</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a></li>
+        </ul>
+    </div>
+</section>
+<section id="prodetails" class="section-p1">
+    <div class="single-pro-image">
+        <img src="img/products/f8.PNG" width="100%" id="mainimg" alt="">
+        <div class="small-img-group">
+            <div class="small-img-col"    >
+                <img src="img/products/f8.PNG" width="100%" class="small-img">
+            </div>
+            <div class="small-img-col"    >
+                <img src="img/products/f81.PNG" width="100%" class="small-img">
+            </div>
+            <div class="small-img-col"    >
+                <img src="img/products/f82.PNG" width="100%" class="small-img">
+            </div>
+            <div class="small-img-col"    >
+                <img src="img/products/f83.PNG" width="100%" class="small-img">
+            </div>
+        </div>
+    </div>
+    <div class="single-pro-details">
+        <h6>Home / Dresses</h6>
+        <h4>Women's Fashion Dresses</h4>
+        <span>Sweat-shirt à capuche court unicolore zippé</span>
+        <h2>150DH</h2>
+        <select>
+            <option>Select Size</option>
+            <option>XL</option>
+            <option>XXL</option>
+            <option>Small</option>
+            <option>Large</option>
+        </select>
+        <input type="number" value="1">
+        <button class="normal" id="dakbutton">Add to Cart</button>
+        <h4>Product details</h4>
+        <span >Robe de soirée en dentelle blanche pour femmes, élégante, sans manches, courte, style Boho, tenue de plage, féerique, été
+        </span>
+
+    </div>
+</section >
+<section id="shopbackbutton" >
+    <button  class="normal" onclick="window.location.href='shop.html';">Go back to Shop page </button>
+</section>
+
+ <footer class="section-p1">
+    <div clas="col">
+        <img src="img/logo.png" id="logo1" alt="">
+        <h4>contact :</h4>
+        <p><strong>Adress : </strong> Rue STOKHOLM APPT 6 OCEAN RABAT</p>
+        <p><strong>Phone : </strong>+212642660196</p>  
+        <p><strong>hours : </strong> 10:00 AM - 06:00 PM, MON - SAT</p>
+        <div class="follow "><br>
+<h4>Follow us :</h4>
+<div class="icon">
+
+    <i class="fab fa-facebook-f"></i>
+    <i class="fab fa-twitter"></i>
+    <i class="fab fa-instagram"></i>
+
+    <i class="fab fa-youtube"></i>
+</div>
+ </div>
+ </div>
+ 
+ <div id="about" class="col">
+     <h4>About :</h4>
+     <a href="#">About us</a>
+     <a href="#">Delivery information</a>
+     <a href="#">Privacy Policy</a>
+     <a href="#">Terms & Conditions</a> 
+     <a href="#">Contact us</a>
+ </div>
+ <div id="myacc" class="col">
+    <h4>My Account:</h4>
+    <a href="#">Sign in</a>
+    <a href="#">View Cart</a>
+    <a href="#">My Wishlist</a>
+    <a href="#">Track My Order</a> 
+    <a href="#">Help</a><br>
+    <p id="xdd">Secured Payement Gateways</p><br>
+    <img src="img/pay.jpg">
+</div>
+
+</footer>
+<script>
+var mainimg=document.getElementById("mainimg");
+var smallimg=document.getElementsByClassName("small-img")
+smallimg[0].onclick=function(){
+    mainimg.src=smallimg[0].src; }
+    smallimg[1].onclick=function(){
+    mainimg.src=smallimg[1].src; }
+    smallimg[2].onclick=function(){
+    mainimg.src=smallimg[2].src; }
+    smallimg[3].onclick=function(){
+    mainimg.src=smallimg[3].src; }
+
+
+
+
+</script>
+    <script  src="index.js"></script>
+</body>
+</html>

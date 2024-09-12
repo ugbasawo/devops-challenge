@@ -1,0 +1,573 @@
+@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap');
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'spartan',sans-serif;
+
+}
+h3{
+    font-size:35px;
+    line-height: 44px;
+    color:white;
+    
+
+}
+h1{
+    font-size:70px;
+    line-height: 64px;
+    color:black;
+    
+
+}
+h2{
+    font-size:46px;
+    line-height: 54px;
+    color:black;
+
+}
+h4{
+    font-size:20px;
+    color:black;
+
+}
+h6{
+    font-weight:700;
+    font-size:12px;
+
+}
+p{ font-size:16px;
+    color: grey;
+    margin: 15px 0 20px 0;
+}
+.section-p1{
+    padding:40px 80px;
+}
+.section-m1{
+    margin: 40px 0;}
+    body{
+        width:100%;
+    }
+/*HEADER*/
+    #header{
+        display: flex;
+        align-items:center;
+        justify-content: space-between;
+        padding:20px 80px;
+        background : rgb(199, 223, 199);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+        z-index:999;
+        position:sticky;/* so header can always apear  */
+        top:0;
+        left:0;
+    }
+    .logo{
+        height:80px;
+    }
+    #navbar{ display: flex;  /*so our list can be aligned in center */ 
+        align-items:center;
+        justify-content: center;
+        
+    }
+    #navbar li {    
+        list-style :none ;/*remove the list points*/
+        padding:0 20px;
+    position:relative;  }
+
+  #navbar li a{ text-decoration: none; /*remove the underline */
+            font-size:16px;
+            font-weight:600;
+            color:#1a1a1a;
+        transition :0.2s ease;}/*so when we hover the coloor change is being smooth*/
+        
+        #navbar li a:hover,
+        #navbar li a.active   /*so when we r active on a page its the icone is highlighted*/
+        {
+                color:#bc11da;
+            }    
+            
+ #navbar li a.active::after,
+ #navbar li a:hover::after  /*so we can add the underline when a section is hoverd or its active */
+ {
+     content:"";
+     width: 30%;
+     height:2px;
+     background:#bc11da;
+     position:absolute;
+     bottom:-4px;
+     left:20px;
+ }      
+ /* HOME PAGE*/
+ #hero{  /*specifier l image du background choisir size et aligner le texte au centre */
+     background-image: url("img/model.jpg");
+
+width:100%;
+height:100vh;
+background-size:cover;
+padding:0 100px;
+display:flex;
+flex-direction:  column; /*pour que les titres ne sont pas dans la méme ligne*/
+align-items:flex-start;
+justify-content: center;
+
+ }     
+ #hero h3{
+     padding-bottom:10px;
+ }
+ 
+     
+ /*feature products*/
+ #product1{
+     text-align: center; /*text in center*/
+ }
+ #product1 .pro{width: 23%;  /*we fix our image in the border and we add a shodow to the broder */
+    min-width: 250px;
+    padding:10px 12px;
+    border: 1px solid #cce7d0; 
+    border-radius:25px;
+    cursor:pointer;
+    box-shadow: 20px 20px 30px rgba(0,0,0,0.2);
+    margin : 15px 0;
+    transition: 0.2s ease;
+    position:relative;
+}
+ #product1 .pro img{ /*on regle la largeur de l image*/
+       width:100%;
+        border-radius:20px; }
+    #product1 .pro .des{ /*text inside border*/
+       text-align:start;
+     padding:10px 0; }
+    #product1 .pro .des span{ /*the text span tag*/
+      color:rgb(40, 37, 37);
+padding-top:7px;
+font-size: 14px; }
+       #product1 .pro .des i{  /*les etoils du produit*/
+           font-size :12px;
+        color:yellow;}
+        #product1 .pro .des h4{ /*prix*/
+            padding-top: 7px ;
+            font-size: 15px;  
+font-weight: 700;
+color: rgb(199, 223, 199);}
+#product1 .pro .cart{ /*icone of cart*/
+    width: 40px;
+    height :40px;
+    line-height:40px;
+    border-radius: 50px;
+background-color: white;
+justify-content: center;
+color: #bc11da;
+border:1px solid #cce7d0;
+position:absolute;
+bottom: 20px;
+right: 10px;}
+#product1 .pro-container{ /* pour que les produits soit dans la meme ligne*/
+    display:flex;
+    justify-content:space-between;
+    padding-top:20px;
+    flex-wrap: wrap;}
+/*banner*/
+#sm-banner .banner-box{ /*personaliser l image*/
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+align-items: center;
+text-align: center;
+background-image: url("img/banner/b2.jpg");
+min-Width:100%;
+height: 50vh;
+background-size: cover;
+background-position: center;
+padding: 30px;}
+#d{ /*les textes*/
+    color: #bc11da;
+    font-weight: 600;}
+#ds{
+    color: #bc11da;}
+#dss{ font-size: 20px;
+    color: rgb(199, 223, 199); font-weight: 500;
+    padding-bottom: 15px;}
+#lolol{color:rgb(199, 223, 199) ; /*la taille du button*/
+    font-size: 
+    30px;
+    font-weight: 400;
+    padding: 11px 18px;
+   background-color: transparent;
+   cursor:pointer;
+   border: 1px solid #fff;
+   outline: none;
+transition: 0.2;}
+
+#banner3 .banner-box{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+align-items: center;
+text-align: center;
+background-image: url("img/banner/b7.jpg");
+min-Width:45%;
+height: 50vh;
+background-size: cover;
+background-position: center;
+padding: 20px;
+margin-bottom:20px;}
+#banner3 h2{
+    color:aquamarine;
+    font-weight: 800;
+    font-size: 60px;}
+#banner3 h3{ font-size: 25px;}
+#banner3{
+    display:flex;
+    justify-content: space-between;
+    
+    padding: 0 80px;
+}
+#banner3 .banner-box2{
+    background-image: url("img/banner/b4.jpg");
+}
+/*footer*/
+footer{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: space-between;
+}
+footer .col{  /* so the text will be shown in columns */
+    display:flex;
+    flex-direction: column;
+    align-items:flex-start;
+    margin-bottom:20px;
+}
+footer.logo{
+    margin-bottom:30px;
+
+}
+footer h4{
+    font-size: 13px;
+   padding-bottom:20px;
+
+}
+footer p
+    {
+        font-size: 13px;
+        margin:0 0 8px 0;
+}
+footer a{ font-size: 13px;  
+    text-decoration: none;
+    color:black;
+   margin-bottom: 10px;
+}
+footer.follow{margin: top 20px;}
+footer.follow{color:black;
+padding-right:4px;
+cursor:pointer;
+}
+#logo1{
+    height:110px;
+    padding-bottom: 30px;
+}
+footer .follow i{
+    color:black;
+    padding-right: 4px;
+    cursor:pointer;
+}
+footer .follow i:hover,  /* so we can color the links and the icons */
+footer a:hover{
+    color:#bc11da;
+}
+#xdd{
+    font-size:19px;
+}
+#about{
+    padding-top: 30px;
+}
+#myacc{ padding-top: 30px;  }
+
+/*SHOP PAGE*/
+#page-header{
+    background-image: url("/img/model2.jpg");
+    width:100%;
+    height:80vh;
+    background-size:cover;
+    padding:0 100px;
+    display:flex;
+    flex-direction:  column;
+    align-items:flex-start;
+    justify-content: center;    
+}
+#pagination{
+    text-align: center;
+}
+#pagination a{
+    text-decoration :none;
+background-color: #bc11da;
+color: rgb(199, 223, 199);
+padding:15px 20px;
+border-radius: 4px;
+font-weight: 600;
+}
+#pagination a i{
+    font-size: 16px;
+    font-weight: 600;
+}
+/*single product*/
+#prodetails{
+ display:flex;
+    margin-top:20px;
+      }
+      #prodetails .single-pro-image{
+    width:40%;
+    margin-right:50px;
+
+}
+.small-img-group{
+    display:flex;
+    justify-content:space-between;
+}
+.small-img-col{
+    flex-basis:24%;
+    cursor:pointer;
+}
+
+
+#prodetails .single-pro-details {width:50%;
+    padding-top:30px;}
+    #prodetails .single-pro-details h4{padding:40px 0 20px 0; }
+    #prodetails .single-pro-details h2{font-size: 26px;}
+    #prodetails .single-pro-details select {display : block;
+    padding: 5px 10px;
+margin-bottom:10px;}
+#prodetails .single-pro-details input{width:50px;
+   height:47px;
+padding-left: 10px;
+font-size: 16px;
+margin-right: 10px;}
+#prodetails .single-pro-details button{background:#bc11da;
+color: rgb(199, 223, 199);}
+#dakbutton{color:rgb(199, 223, 199) ;
+    font-size: 
+20px;
+    font-weight: 400;
+    padding: 11px 18px;
+   background-color: transparent;
+   cursor:pointer;
+   border: 1px solid #fff;
+   outline: none;
+transition: 0.2;
+
+}
+#prodetails .single-pro-details input:focus{outline:none;   }
+#prodetails .single-pro-details span{
+    line-height: 25px;
+}
+/* about page*/
+#page-header.about-header{
+    background-image:url("img/about/banner122.jpg");
+    height:60vh
+
+}
+#about-header {
+    display :flex;
+    align-items: center;   /*hadi bach text ykon hda image*/
+}
+#about-header img{
+    width:50%; height:auto;
+}
+#about-header div{
+    padding-left: 50px; /*space between text and image*/
+    
+}
+#about-app{
+    text-align: center;
+
+}
+/*contact*/
+
+#page-header.contact-header{
+    background-image:url("img/contact/c1.jpg");
+    height:60vh
+
+}
+#contact-details{
+    display:flex;
+    align-items:center;  /*so our map and text can share the space and be aligned*/ 
+    justify-content: space-between;
+}
+#contact-details .details{
+    width:40%;
+}
+#contact-details .details h4,
+#form-details form{
+    font-size:17px;
+    padding-bottom: 20px;
+
+}
+#contact-details .details h1,
+#form-details form h2{      
+    font-size: 26px;
+    line-height: 35px;
+    padding:20px 0;}
+    /* hna bach tqad les listes maybach ybano les points w t alignitext maa l images*/
+    #contact-details .details li{
+        list-style:none;
+        display:flex;
+        padding :10px 0;}
+        #contact-details .details li i{
+            font-size: 14px;
+            padding-right: 22px;}
+                  
+            #contact-details .details li p{  
+                margin:0;
+                font-size: 14px;        
+             }
+ #contact-details  .map{
+     width:55%;
+     height:400px;
+
+ }   
+ #contact-details  .map iframe{  
+     width: 100%;
+     height:100%;   }
+     #form-details form{ /*nqado dok l input bach ykono f nfs colone*/
+         width:65%;
+         display:flex;
+         flex-direction: column;
+         align-items: flex-start;
+     } 
+     #form-details form input,#form-details form textarea
+     {
+         width: 100%;
+         padding:12px 15px;
+         outline:none;
+         margin-bottom: 20px;
+         border:1px solid grey;
+     }     
+.normal{color:rgb(199, 223, 199) ; /*for the button*/
+    font-size: 
+    20px;
+    font-weight: 400;
+    padding: 11px 18px;
+   background-color: #bc11da;
+   cursor:pointer;
+   border: 1px solid #bc11da;
+   outline: none;
+transition: 0.2;
+}
+/*images of the contzact*/
+#form-details .people div{
+    padding-bottom: 25px;
+    display:flex;
+    align-items: flex-start;
+}
+#form-details .people div img{
+    width: 65px;
+    height:65px;
+    object-fit: cover;
+    margin-right:15px;
+}
+#form-details .people div p{
+    margin:0;
+    font-size: 13px;
+    line-height: 25px;
+}
+#form details .people div p spean{
+    display:block;
+    font-size:16px;
+    font-weight: 600;
+    color:black;
+}
+#form-details{
+    display:flex;
+    justify-content: space-between;
+    margin: 30px;
+    padding: 80px;
+    border:1px solid grey;
+}
+/*cart*/
+#cart table{
+    width: 100%;
+    border-collapse: collapse;
+
+    table-layout: fixed;
+    white-space: nowrap;
+}
+#cart table img{
+    width:70px;
+}
+#cart table td:nth-child(1){
+    width: 100px;
+    text-align: center;
+}
+#cart table td:nth-child(2){
+    width: 150px;
+    text-align: center;
+}
+#cart table td:nth-child(3){
+    width: 250px;
+    text-align: center;
+}
+#cart table td:nth-child(4),#cart table td:nth-child(5),#cart table td:nth-child(6){
+    width: 150px;
+    text-align: center;
+}
+#cart table td:nth-child(5) input{
+    width:70px;
+    padding:10px 5px 10px 15px;
+}
+#cart table thead{
+    border:1px solid #e2e9e1;
+    border-left:none;
+    border-right:none;
+}
+#cart table thead td{
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 13px;
+    padding:18px;}
+
+
+    #cart table tbody tr td{
+        padding-top:15px;}
+
+        #cart table tbody  td{font-size: 13px;}
+#cart-add{
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+}
+#subtotal{
+    width: 50%;
+    margin-bottom: 30px;
+
+border:1px solid #e2e9e1;padding:30px;
+}
+#subtotal table{
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom:20px;
+}
+#subtotal table td{
+    width: 50%;
+    border: 1px solid #e2e9e1;
+    padding:10px;
+    font-size: 13px;
+}
+#subtotal h3{
+    padding-bottom: 15px;
+}
+#page-header.cart-header{
+    background-image:url("img/banner/cart1.jpg");
+    height:60vh
+
+}
+/* the button to go back to shop*/
+
+
+#shopbackbutton{   /*hadi bach l button ykon lwst*/
+ 
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding-bottom: 50px;
+        padding-top:50px;
+    
+}

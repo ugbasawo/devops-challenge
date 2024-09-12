@@ -1,0 +1,9 @@
+we made style by tags to not bother change it every time 
+rose #ffe0db
+sky blue #add8e6 BLUE rgb(74, 74, 184)
+white #E3E6F3
+maybe violet 
+women like light colours 
+the 3 rule colors :
+green rgb(199, 223, 199)
+

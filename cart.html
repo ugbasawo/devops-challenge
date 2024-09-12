@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet</title> 
+    <script src="https://kit.fontawesome.com/9a6ad59c4f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+<section id="header">
+    <a href="#"><img onclick="window.location.href='index.html';"src="img/logo.png" class="logo" alt=""></a>
+    <div>
+        <ul id="navbar">
+            <li><a href="index.html" >Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a  href="about.html">About</a></li>
+            <li><a href="contact.html" >Contact</a></li>
+            <li><a href="cart.html" class="active"><i class="fa-solid fa-bag-shopping"></i></a></li>
+        </ul>
+    </div>
+</section>
+<section id="page-header" class="cart-header" >
+ 
+    <h1 style="color: tomato;background-color:beige;">#My_Cart </h1><br>
+    <h3 style="background-color:tomato;color: beige;">Take ur Order Now</h3><br>
+    <h1 style="color:white ;background-color:black"></h1>
+  
+
+</section>
+<section id="cart" class="section-p1">
+    <table width="100%">
+        <thead><tr>
+            <td>Remove </td>
+            <td>Image</td>
+            <td>Product</td>
+            <td>Price</td>
+            <td>Quantity</td>
+            <td>Subtotal </td></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><a href="#"><i class="fas fa-times-circle"></i></a></td>
+                <td><img src="img/products/f1.PNG">   </td>
+                <td>Solid Tie Back Flounce Hem Dress</td>
+                 <td>200DH</td>
+                <td><input type="number" value="1"></td>
+                <td>200DH</td>
+            </tr>
+            <tr>
+                <td><a href="#"><i class="fas fa-times-circle"></i></a></td>
+                <td><img src="img/products/f2.PNG">   </td>
+                <td>Puff sleeve ruffled blouse</td>
+                 <td>150DH</td>
+                <td><input type="number" value="1"></td>
+                <td>150DH</td>
+            </tr>
+            <tr>
+                <td><a href="#"><i class="fas fa-times-circle"></i></a></td>
+                <td><img src="img/products/f3.PNG">   </td>
+                <td>Batwing Sleeve Button Placket Shirt Dress (No Belt)</td>
+                 <td>219DH</td>
+                <td><input type="number" value="1"></td>
+                <td>219DH</td>
+            </tr>
+        </tbody>
+
+    </table>
+</section>
+<section id="cart-add" class="section-p1">
+    <div id="subtotal" >
+        <h3 style="color:black">Cart Totals</h3>
+        <table>
+            <tr>
+                <td>Cart Subtotal</td>
+                <td>569DH</td>
+
+            </tr>
+            <tr>
+                <td>Shipping</td>
+                <td>Free</td>
+            </tr>
+            <tr>
+                <td><strong>Total</strong></td>
+                <td><strong>569DH</strong></td>
+            </tr>
+        </table>
+        <button Class="normal">Confirm</button>
+    </div></section>
+
+<footer class="section-p1" >
+    <div clas="col">
+        <img src="img/logo.png" id="logo1" alt="" >
+        <h4>contact :</h4>
+        <p><strong>Adress : </strong> Rue STOKHOLM APPT 6 OCEAN RABAT</p>
+        <p><strong>Phone : </strong>+212642660196</p>  
+        <p><strong>hours : </strong> 10:00 AM - 06:00 PM, MON - SAT</p>
+        <div class="follow "><br>
+<h4>Follow us :</h4>
+<div class="icon">
+
+    <i class="fab fa-facebook-f"></i>
+    <i class="fab fa-twitter"></i>
+    <i class="fab fa-instagram"></i>
+
+    <i class="fab fa-youtube"></i>
+</div>
+ </div>
+ </div>
+ 
+ <div id="about" class="col">
+     <h4>About :</h4>
+     <a href="#">About us</a>
+     <a href="#">Delivery information</a>
+     <a href="#">Privacy Policy</a>
+     <a href="#">Terms & Conditions</a> 
+     <a href="#">Contact us</a>
+ </div>
+ <div id="myacc" class="col">
+    <h4>My Account:</h4>
+    <a href="#">Sign in</a>
+    <a href="#">View Cart</a>
+    <a href="#">My Wishlist</a>
+    <a href="#">Track My Order</a> 
+    <a href="#">Help</a><br>
+    <p id="xdd">Secured Payement Gateways</p><br>
+    <img src="img/pay.jpg">
+</div>
+
+</footer>
+<script  src="index.js"></script>
+</body>
+</html>
