@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projet</title> 
+    <title>Project</title> 
     <script src="https://kit.fontawesome.com/9a6ad59c4f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
-    
 </head>
 <body>
 <section id="header">
@@ -23,47 +22,69 @@
     </div>
 </section>
 <section id="hero">
-    <h1 style="color:rgb(199, 223, 199)"> Your Store </h1>
-    <h1 style="color:rgb(199, 223, 199)" > Oh Wow!</h1><br>
-    <h3 >Enjoy our exceptional offers</h3>
+    <h1 style="color:rgb(199, 223, 199)">Your Store</h1>
+    <h1 style="color:rgb(199, 223, 199)">Wow!</h1><br>
+    <h3>Take advantage of our exceptional offers</h3>
     <h3>on all products!</h3>
 </section>
-
 <section id="product1" class="section-p1"> 
-<h2>Featured Products</h2>
-<p> Spring Collection New Modern Design</p>
-<div class="pro-container">
-    <div class="pro" onclick="window.location.href='sproduct.html';">
-        <img src="img/products/f1.PNG" alt="">
-        <div class="des">
-            <span>Solid Tie Back Flounce Hem Dress</span>
-            <div class="star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div><br>
-            <h4>200DH</h4>
+    <h2>Featured Products</h2>
+    <p>Spring Collection - Modern New Design</p>
+    <div class="pro-container">
+        <div class="pro" onclick="window.location.href='sproduct.html';">
+            <img src="img/products/f1.PNG" alt="">
+            <div class="des">
+                <span>Solid Tie Back Flounce Hem Dress</span>
+                <div class="star">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div><br>
+                <h4>200DH</h4>
+            </div>
+            <a id="xd" href="#"><i class="fa-solid fa-basket-shopping cart"></i></a>
         </div>
-        <a id="xd" href="#"><i class="fa-solid fa-basket-shopping cart"></i></a>
+        <!-- More products continue here -->
     </div>
-    <!-- More products here -->
-</div>
 </section>
 
 <section id="sm-banner" class="section-p1">
     <div class="banner-box">
-        <h3>Buy one for yourself and one for your loved one!</h3><br>
-        <h2>Buy 1 get 1 free</h2><br>
-        <span>The best deals only at Swi9a</span><br>
-        <button onclick="window.location.href='learnmore.html';">Learn More</button>
+        <h3 id="d">One for you, one for someone special!</h3><br>
+        <h2 id="ds">Buy 1 get 1 for free</h2><br>
+        <span id="dss">The best deals only at Swi9a</span><br>
+        <button id="lolol" onclick="window.location.href='learnmore.html';">Learn More</button>
     </div>
 </section>
 
-<section id="banner3" >
+<section id="product1" class="section-p1">
+    <h2>New Arrivals</h2>
+    <p>Spring Collection - Modern New Design</p>
+    <div class="pro-container">
+        <div class="pro" onclick="window.location.href='sproductn1.html';">
+            <img src="img/products/n1.PNG" alt="">
+            <div class="des">
+                <span>Textured High-Waisted Flared Skirt</span>
+                <div class="star">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div><br>
+                <h4>264DH</h4>
+            </div>
+            <a id="xd" href="#"><i class="fa-solid fa-basket-shopping cart"></i></a>
+        </div>
+        <!-- More products continue here -->
+    </div>
+</section>
+
+<section id="banner3">
     <div class="banner-box">
-        <h2>Big Discounts!</h2>
+        <h2>Great Discounts!</h2>
         <h3>Winter Collection - 50% OFF</h3>
     </div>
     <div class="banner-box banner-box2">
@@ -76,11 +97,11 @@
     <div class="col">
         <img src="img/logo.png" id="logo1" alt="">
         <h4>Contact:</h4>
-        <p><strong>Address: </strong> Rue STOKHOLM APPT 6 OCEAN RABAT</p>
-        <p><strong>Phone: </strong>+212642660196</p>  
-        <p><strong>Hours: </strong> 10:00 AM - 06:00 PM, MON - SAT</p>
-        <div class="follow"><br>
-            <h4>Follow us:</h4>
+        <p><strong>Address:</strong> Rue STOKHOLM APPT 6 OCEAN RABAT</p>
+        <p><strong>Phone:</strong> +212642660196</p>
+        <p><strong>Hours:</strong> 10:00 AM - 06:00 PM, MON - SAT</p>
+        <div class="follow">
+            <h4>Follow Us:</h4>
             <div class="icon">
                 <i class="fab fa-facebook-f"></i>
                 <i class="fab fa-twitter"></i>
@@ -88,26 +109,26 @@
                 <i class="fab fa-youtube"></i>
             </div>
         </div>
-    </div>         
+    </div>
     <div id="about" class="col">
         <h4>About:</h4>
-        <a href="#">About us</a>
-        <a href="#">Delivery information</a>
+        <a href="#">About Us</a>
+        <a href="#">Delivery Information</a>
         <a href="#">Privacy Policy</a>
-        <a href="#">Terms & Conditions</a> 
-        <a href="#">Contact us</a>
+        <a href="#">Terms & Conditions</a>
+        <a href="#">Contact Us</a>
     </div>
     <div id="myacc" class="col">
         <h4>My Account:</h4>
-        <a href="#">Sign in</a>
+        <a href="#">Sign In</a>
         <a href="#">View Cart</a>
         <a href="#">My Wishlist</a>
-        <a href="#">Track My Order</a> 
-        <a href="#">Help</a><br>
-        <p>Secured Payment Gateways</p><br>
-        <img src="img/pay.jpg">
+        <a href="#">Track My Order</a>
+        <a href="#">Help</a>
+        <p id="xdd">Secured Payment Gateways</p>
+        <img src="img/pay.jpg" alt="">
     </div>
-</footer>   
+</footer>
 
 <script src="index.js"></script>
 </body>
