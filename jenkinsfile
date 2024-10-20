@@ -1,0 +1,42 @@
+pipeline {
+    agent any
+    environment {
+        DOCKER_CREDENTIALS_ID = 'dockerhub-credentials'
+        IMAGE_NAME = 'proxxpa/devops-project-static-website'
+    }
+    stages {
+        stage('Checkout Code') {
+            steps {
+                git url: 'https://github.com/Goziee-git/devops-challenge.git', branch: 'prospa'
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    sh 'docker build -t $IMAGE_NAME .'
+                }
+            }
+        }
+        stage('Login to Docker Hub') {
+            steps {
+                script {
+                    docker.withRegistry('', "$DOCKER_CREDENTIALS_ID") {
+                        echo 'Logged in to Docker Hub'
+                    }
+                }
+            }
+        }
+        stage('Push Docker Image') {
+            steps {
+                script {
+                    sh 'docker push $IMAGE_NAME'
+                }
+            }
+        }
+    }
+    post {
+        always {
+            echo 'Pipeline completed'
+        }
+    }
+}
