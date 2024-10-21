@@ -8,8 +8,6 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 script {
-                    // Set GIT_SSH_COMMAND for this stage
-                    env.GIT_SSH_COMMAND = 'ssh -o StrictHostKeyChecking=no'
                     // Perform the git clone or checkout
                     sh 'git clone git@github.com:Goziee-git/devops-challenge.git'
                 }
