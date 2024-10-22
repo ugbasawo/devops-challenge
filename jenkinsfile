@@ -1,14 +1,11 @@
 pipeline {
     agent {
-        docker { 
-            image 'docker:stable-dind'q
-            args '-v /var/run/docker.sock:/var/run/docker.sock' 
+        docker {
+            image 'docker:stable-dind'
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
     environment {
-        DOCKER_CREDENTIALS_ID = 'dockerhub-credentialsdocker '
-        IMAGE_NAME = 'proxxpa/devops-project-static-website'
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials-id')
         IMAGE_NAME = 'my-static-website'
         IMAGE_TAG = 'latest'
     }
@@ -27,10 +24,12 @@ pipeline {
         }
         stage('Push Docker Image') {
             steps {
-                script {
-                    sh 'echo "$DOCKERHUB_CREDENTIALS_PSW" | docker login -u "$DOCKERHUB_CREDENTIALS_USR" --password-stdin'
-                    sh 'docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${DOCKERHUB_CREDENTIALS_USR}/${IMAGE_NAME}:${IMAGE_TAG}'
-                    sh 'docker push ${DOCKERHUB_CREDENTIALS_USR}/${IMAGE_NAME}:${IMAGE_TAG}'
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials-id', usernameVariable: 'DOCKERHUB_CREDENTIALS_USR', passwordVariable: 'DOCKERHUB_CREDENTIALS_PSW')]) {
+                    script {
+                        sh 'echo "$DOCKERHUB_CREDENTIALS_PSW" | docker login -u "$DOCKERHUB_CREDENTIALS_USR" --password-stdin'
+                        sh 'docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${DOCKERHUB_CREDENTIALS_USR}/${IMAGE_NAME}:${IMAGE_TAG}'
+                        sh 'docker push ${DOCKERHUB_CREDENTIALS_USR}/${IMAGE_NAME}:${IMAGE_TAG}'
+                    }
                 }
             }
         }
