@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKER_CREDENTIALS_ID = 'dockerhub-credentials'
+        DOCKER_CREDENTIALS_ID = 'dockerhub-credentialsdocker '
         IMAGE_NAME = 'proxxpa/devops-project-static-website'
     }
     stages {
