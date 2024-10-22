@@ -1,45 +1,44 @@
 pipeline {
-    agent any
+    agent {
+        docker { 
+            image 'docker:stable-dind'
+            args '-v /var/run/docker.sock:/var/run/docker.sock' 
+        }
+    }
     environment {
-        DOCKER_CREDENTIALS_ID = 'dockerhub-credentials'
-        IMAGE_NAME = 'proxxpa/devops-project-static-website'
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials-id')
+        IMAGE_NAME = 'my-static-website'
+        IMAGE_TAG = 'latest'
     }
     stages {
-        stage('Checkout Code') {
+        stage('Checkout') {
             steps {
-                script {
-                    // Perform the git clone or checkout
-                    sh 'git clone git@github.com:Goziee-git/devops-challenge.git'
-                }
+                checkout scm
             }
         }
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh 'docker build -t $IMAGE_NAME .'
-                }
-            }
-        }
-        stage('Login to Docker Hub') {
-            steps {
-                script {
-                    docker.withRegistry('', "$DOCKER_CREDENTIALS_ID") {
-                        echo 'Logged in to Docker Hub'
-                    }
+                    sh 'docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .'
                 }
             }
         }
         stage('Push Docker Image') {
             steps {
                 script {
-                    sh 'docker push $IMAGE_NAME'
+                    sh 'echo "$DOCKERHUB_CREDENTIALS_PSW" | docker login -u "$DOCKERHUB_CREDENTIALS_USR" --password-stdin'
+                    sh 'docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${DOCKERHUB_CREDENTIALS_USR}/${IMAGE_NAME}:${IMAGE_TAG}'
+                    sh 'docker push ${DOCKERHUB_CREDENTIALS_USR}/${IMAGE_NAME}:${IMAGE_TAG}'
                 }
             }
         }
     }
     post {
         always {
-            echo 'Pipeline completed'
+            script {
+                sh 'docker rmi ${IMAGE_NAME}:${IMAGE_TAG} || true'
+                sh 'docker logout'
+            }
         }
     }
 }
