@@ -7,5 +7,9 @@ COPY . /usr/share/nginx/html
 # Expose port 80
 EXPOSE 90
 
+# install bash into the container 
+#lightweight images usually do not have bash installed
+RUN apk add --no-cache bash
+
 # Start Nginx when the container launches
 CMD ["nginx", "-g", "daemon off;"]
