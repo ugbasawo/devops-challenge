@@ -30,6 +30,7 @@ pipeline {
                 withCredentials([string(credentialsId: 'github-access-token', variable: 'GITHUB_TOKEN')]) {
                     script {
                         env.GITHUB_TOKEN = GITHUB_TOKEN
+                         sh 'apk add --no-cache curl' #intalls curl 
                         // Now you can use GITHUB_TOKEN safely
                         sh 'echo "Using GitHub Token: $GITHUB_TOKEN"'
                     }
@@ -68,7 +69,7 @@ pipeline {
             // Update GitHub commit status to 'success'
             script {
                 def commitHash = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
-                sh "curl -u 'Goziee-git:${GITHUB_TOKEN}' -X POST -H 'Content-Type: application/json' https://api.github.com/repos/<OWNER>/<REPO>/statuses/${commitHash} -d '{\"state\": \"success\", \"description\": \"Build succeeded\", \"context\": \"continuous-integration/jenkins\"}'"
+                sh "curl -u 'Goziee-git:${GITHUB_TOKEN}' -X POST -H 'Content-Type: application/json' https://api.github.com/repos/Goziee-git/devops-challenge.git/statuses/${commitHash} -d '{\"state\": \"success\", \"description\": \"Build succeeded\", \"context\": \"continuous-integration/jenkins\"}'"
             }
             // Send success email notification
             emailext(
