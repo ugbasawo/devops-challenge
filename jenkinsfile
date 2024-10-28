@@ -8,6 +8,7 @@ pipeline {
     environment {
         IMAGE_NAME = 'my-static-website'
         IMAGE_TAG = 'latest'
+        NOTIFICATION_EMAIL = 'your-email@example.com' // Replace with your notification email
     }
     stages {
         stage('Checkout') {
@@ -23,15 +24,16 @@ pipeline {
                 }
             }
         }
-        stage('github access') {
+        stage('GitHub Access') {
             steps {
-                withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')])
-                    scripts {
+                withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
+                    script {
                         // Now you can use GITHUB_TOKEN safely
                         sh 'echo "Using GitHub Token: $GITHUB_TOKEN"'
                     }
                 }
             }
+        }
         stage('Push Docker Image') {
             steps {
                 withCredentials([usernamePassword(credentialsId: '7828bad6-9e01-4862-a785-6c3ff1aa50ed', usernameVariable: 'DOCKERHUB_CREDENTIALS_USR', passwordVariable: 'DOCKERHUB_CREDENTIALS_PSW')]) {
@@ -53,7 +55,7 @@ pipeline {
                     '''
                     // Run a new container with the built image
                     sh '''
-                        docker run -d --name ${IMAGE_NAME} -p 90:90 ${DOCKERHUB_CREDENTIALS_USR} ${IMAGE_NAME}:${IMAGE_TAG}
+                        docker run -d --name ${IMAGE_NAME} -p 90:90 ${DOCKERHUB_CREDENTIALS_USR}/${IMAGE_NAME}:${IMAGE_TAG}
                     '''
                 }
             }
@@ -68,7 +70,7 @@ pipeline {
             }
             // Send success email notification
             emailext(
-                to: '${NOTIFICATION_EMAIL}',
+                to: "${NOTIFICATION_EMAIL}",
                 subject: "Jenkins Build Success - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                 body: "The build was successful! Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})"
             )
@@ -81,7 +83,7 @@ pipeline {
             }
             // Send failure email notification
             emailext(
-                to: '${NOTIFICATION_EMAIL}',
+                to: "${NOTIFICATION_EMAIL}",
                 subject: "Jenkins Build Failed - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                 body: "The build failed! Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})"
             )
