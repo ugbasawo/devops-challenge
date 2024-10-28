@@ -54,11 +54,11 @@ pipeline {
             // Update GitHub commit status to 'success'
             script {
                 def commitHash = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
-                sh "curl -u 'Goziee-git:${GITHUB TOKEN}' -X POST -H 'Content-Type: application/json' https://api.github.com/repos/<OWNER>/<REPO>/statuses/${commitHash} -d '{\"state\": \"success\", \"description\": \"Build succeeded\", \"context\": \"continuous-integration/jenkins\"}'"
+                sh "curl -u 'Goziee-git:${GITHUB_TOKEN}' -X POST -H 'Content-Type: application/json' https://api.github.com/repos/<OWNER>/<REPO>/statuses/${commitHash} -d '{\"state\": \"success\", \"description\": \"Build succeeded\", \"context\": \"continuous-integration/jenkins\"}'"
             }
             // Send success email notification
             emailext(
-                to: 'prospachigoz@gmail.com',
+                to: '${NOTIFICATION_EMAIL}',
                 subject: "Jenkins Build Success - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                 body: "The build was successful! Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})"
             )
@@ -67,11 +67,11 @@ pipeline {
             // Update GitHub commit status to 'failure'
             script {
                 def commitHash = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
-                sh "curl -u 'Goziee-git:${GITHUB TOKEN}' -X POST -H 'Content-Type: application/json' https://api.github.com/repos/<OWNER>/<REPO>/statuses/${commitHash} -d '{\"state\": \"failure\", \"description\": \"Build failed\", \"context\": \"continuous-integration/jenkins\"}'"
+                sh "curl -u 'Goziee-git:${GITHUB_TOKEN}' -X POST -H 'Content-Type: application/json' https://api.github.com/repos/<OWNER>/<REPO>/statuses/${commitHash} -d '{\"state\": \"failure\", \"description\": \"Build failed\", \"context\": \"continuous-integration/jenkins\"}'"
             }
             // Send failure email notification
             emailext(
-                to: '${NOTIFICATION-EMAIL}',
+                to: '${NOTIFICATION_EMAIL}',
                 subject: "Jenkins Build Failed - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                 body: "The build failed! Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})"
             )
