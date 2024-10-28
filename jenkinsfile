@@ -9,6 +9,7 @@ pipeline {
         IMAGE_NAME = 'my-static-website'
         IMAGE_TAG = 'latest'
         NOTIFICATION_EMAIL = 'prospachigoz@gmail.com' // Replace with your notification email
+        GITHUB_TOKEN = 'github-access-token'
     }
     stages {
         stage('Checkout') {
@@ -26,8 +27,9 @@ pipeline {
         }
         stage('GitHub Access') {
             steps {
-                withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
+                withCredentials([string(credentialsId: 'github-access-token', variable: 'GITHUB_TOKEN')]) {
                     script {
+                        env.GITHUB_TOKEN = GITHUB_TOKEN
                         // Now you can use GITHUB_TOKEN safely
                         sh 'echo "Using GitHub Token: $GITHUB_TOKEN"'
                     }
