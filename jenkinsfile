@@ -44,7 +44,7 @@ pipeline {
                     '''
                     // Run a new container with the built image
                     sh '''
-                        docker run -d --name ${IMAGE_NAME} -p 90:90 ${DOCKERHUB_CREDENTIALS_USR}/${IMAGE_NAME}:${IMAGE_TAG}
+                        docker run -d --name ${IMAGE_NAME} -p 90:90 ${DOCKERHUB_CREDENTIALS_USR} ${IMAGE_NAME}:${IMAGE_TAG}
                     '''
                 }
             }
