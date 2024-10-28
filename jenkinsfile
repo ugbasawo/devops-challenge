@@ -24,7 +24,7 @@ pipeline {
         }
         stage('Push Docker Image') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials-from-jenkins.', usernameVariable: 'DOCKERHUB_CREDENTIALS_USR', passwordVariable: 'DOCKERHUB_CREDENTIALS_PSW')]) {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials-from-jenkins', usernameVariable: 'DOCKERHUB_CREDENTIALS_USR', passwordVariable: 'DOCKERHUB_CREDENTIALS_PSW')]) {
                     script {
                         sh 'echo "$DOCKERHUB_CREDENTIALS_PSW" | docker login -u "$DOCKERHUB_CREDENTIALS_USR" --password-stdin'
                         sh 'docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${DOCKERHUB_CREDENTIALS_USR}/${IMAGE_NAME}:${IMAGE_TAG}'
@@ -43,13 +43,39 @@ pipeline {
                     '''
                     // Run a new container with the built image
                     sh '''
-                        docker run -d --name ${IMAGE_NAME} -p 90:90 ${DOCKERHUB_CREDENTIALS_USR} ${IMAGE_NAME}:${IMAGE_TAG}
+                        docker run -d --name ${IMAGE_NAME} -p 90:90 ${DOCKERHUB_CREDENTIALS_USR}/${IMAGE_NAME}:${IMAGE_TAG}
                     '''
                 }
             }
         }
     }
     post {
+        success {
+            // Update GitHub commit status to 'success'
+            script {
+                def commitHash = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+                sh "curl -u <GITHUB_USERNAME>:<GITHUB_ACCESS_TOKEN> -X POST -H 'Content-Type: application/json' https://api.github.com/repos/<OWNER>/<REPO>/statuses/${commitHash} -d '{\"state\": \"success\", \"description\": \"Build succeeded\", \"context\": \"continuous-integration/jenkins\"}'"
+            }
+            // Send success email notification
+            emailext(
+                to: 'prospachigoz@gmail.com',
+                subject: "Jenkins Build Success - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: "The build was successful! Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})"
+            )
+        }
+        failure {
+            // Update GitHub commit status to 'failure'
+            script {
+                def commitHash = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+                sh "curl -u <GITHUB_USERNAME>:<GITHUB_ACCESS_TOKEN> -X POST -H 'Content-Type: application/json' https://api.github.com/repos/<OWNER>/<REPO>/statuses/${commitHash} -d '{\"state\": \"failure\", \"description\": \"Build failed\", \"context\": \"continuous-integration/jenkins\"}'"
+            }
+            // Send failure email notification
+            emailext(
+                to: 'prospachigoz@gmail.com',
+                subject: "Jenkins Build Failed - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: "The build failed! Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})"
+            )
+        }
         always {
             script {
                 sh 'docker rmi ${IMAGE_NAME}:${IMAGE_TAG} || true'
