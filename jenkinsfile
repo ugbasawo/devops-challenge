@@ -23,6 +23,15 @@ pipeline {
                 }
             }
         }
+        stage('github access') {
+            steps {
+                withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')])
+                    scripts {
+                        // Now you can use GITHUB_TOKEN safely
+                        sh 'echo "Using GitHub Token: $GITHUB_TOKEN"'
+                    }
+                }
+            }
         stage('Push Docker Image') {
             steps {
                 withCredentials([usernamePassword(credentialsId: '7828bad6-9e01-4862-a785-6c3ff1aa50ed', usernameVariable: 'DOCKERHUB_CREDENTIALS_USR', passwordVariable: 'DOCKERHUB_CREDENTIALS_PSW')]) {
