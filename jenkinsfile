@@ -30,7 +30,7 @@ pipeline {
                 withCredentials([string(credentialsId: 'github-access-token', variable: 'GITHUB_TOKEN')]) {
                     script {
                         env.GITHUB_TOKEN = GITHUB_TOKEN
-                         sh 'apk add --no-cache curl' #intalls curl 
+                         sh 'apk add --no-cache curl'  
                         // Now you can use GITHUB_TOKEN safely
                         sh 'echo "Using GitHub Token: $GITHUB_TOKEN"'
                     }
@@ -58,7 +58,7 @@ pipeline {
                     '''
                     // Run a new container with the built image
                     sh '''
-                        docker run -d --name ${IMAGE_NAME} -p 90:90 ${DOCKERHUB_CREDENTIALS_USR}/${IMAGE_NAME}:${IMAGE_TAG}
+                        docker run -d --name ${IMAGE_NAME} -p 90:90 ${DOCKERHUB_CREDENTIALS_USR} ${IMAGE_NAME}:${IMAGE_TAG}
                     '''
                 }
             }
