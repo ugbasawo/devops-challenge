@@ -1,0 +1,27 @@
+TERRAFORM is an important Infrastructure as Code tool that is used for provisioning and configuration of infrastructure
+in this example, the terraform_docker.tf file is a sample terraform file that is used to setup a docker infrastructure 
+with docker resources such as 
+- Docker Image
+- Docker Volume
+  .with ports
+  .mount volumes
+- Docker Network
+- Docker Container 
+
+1. To begin you need to have terraform installed in your machine, check installation using the command
+  terraform --version
+
+2. Initialization of terraform using the command
+  terraform init
+
+3. Checkt the validity of your terraform configuration file (terraform_docker.tf) using the command
+  terraform validate
+
+4. Look through to see the infrastructure and resources terraform is instructed by the file to implement using the command
+  terraform plan
+
+5. Implement the terraform infrastructure using the command 
+  terraform apply
+  
+6. Destroy the terraform infrastructure using the command
+  terraform destroy
