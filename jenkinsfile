@@ -1,3 +1,4 @@
+
 pipeline {
     agent {
         docker {
@@ -8,6 +9,8 @@ pipeline {
     environment {
         IMAGE_NAME = 'my-static-website'
         IMAGE_TAG = 'latest'
+        NOTIFICATION_EMAIL = 'prospachigoz@gmail.com' // Replace with your notification email
+        GITHUB_TOKEN = 'github-access-token'
     }
     stages {
         stage('Checkout') {
@@ -18,7 +21,20 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
+                    sh 'apk update && apk add git'
                     sh 'docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .'
+                }
+            }
+        }
+        stage('GitHub Access') {
+            steps {
+                withCredentials([string(credentialsId: 'github-access-token', variable: 'GITHUB_TOKEN')]) {
+                    script {
+                        env.GITHUB_TOKEN = GITHUB_TOKEN
+                         sh 'apk add --no-cache curl'  
+                        // Now you can use GITHUB_TOKEN safely
+                        sh 'echo "Using GitHub Token: $GITHUB_TOKEN"'
+                    }
                 }
             }
         }
@@ -43,13 +59,39 @@ pipeline {
                     '''
                     // Run a new container with the built image
                     sh '''
-                        docker run -d --name ${IMAGE_NAME} -p 90:90 ${DOCKERHUB_CREDENTIALS_USR} ${IMAGE_NAME}:${IMAGE_TAG}
+                        docker run -d --name ${IMAGE_NAME} -p 90:90 ${DOCKERHUB_CREDENTIALS_USR}/${IMAGE_NAME}:${IMAGE_TAG}
                     '''
                 }
             }
         }
     }
     post {
+        success {
+            // Update GitHub commit status to 'success'
+            script {
+                def commitHash = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+                sh "curl -u 'Goziee-git:${GITHUB_TOKEN}' -X POST -H 'Content-Type: application/json' https://api.github.com/repos/Goziee-git/devops-challenge.git/statuses/${commitHash} -d '{\"state\": \"success\", \"description\": \"Build succeeded\", \"context\": \"continuous-integration/jenkins\"}'"
+            }
+            // Send success email notification
+            emailext(
+                to: "${NOTIFICATION_EMAIL}",
+                subject: "Jenkins Build Success - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: "The build was successful! Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})"
+            )
+        }
+        failure {
+            // Update GitHub commit status to 'failure'
+            script {
+                def commitHash = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+                sh "curl -u 'Goziee-git:${GITHUB_TOKEN}' -X POST -H 'Content-Type: application/json' https://api.github.com/repos/<OWNER>/<REPO>/statuses/${commitHash} -d '{\"state\": \"failure\", \"description\": \"Build failed\", \"context\": \"continuous-integration/jenkins\"}'"
+            }
+            // Send failure email notification
+            emailext(
+                to: "${NOTIFICATION_EMAIL}",
+                subject: "Jenkins Build Failed - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: "The build failed! Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})"
+            )
+        }
         always {
             script {
                 sh 'docker rmi ${IMAGE_NAME}:${IMAGE_TAG} || true'
