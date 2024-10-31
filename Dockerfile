@@ -1,14 +1,15 @@
-# Use the official Nginx image as the base image
+# Use the official Nginx image from Docker Hub as the base image
 FROM nginx:alpine
 
-# Set the working directory inside the container
-WORKDIR /usr/share/nginx/html
+# Copy the static website files into the Nginx default public directory
+COPY . /usr/share/nginx/html
 
-# Copy the current directory contents (HTML, CSS, JS) into the container
-COPY . .
+# Expose port 80
+EXPOSE 90
 
-# Expose port 80 to the host
-EXPOSE 80
+# install bash into the container 
+#lightweight images usually do not have bash installed
+RUN apk add --no-cache bash
 
-# The default Nginx configuration serves files from /usr/share/nginx/html
-# No CMD instruction is needed as the Nginx base image already specifies the default command
+# Start Nginx when the container launches
+CMD ["nginx", "-g", "daemon off;"]
